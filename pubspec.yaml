@@ -1,0 +1,47 @@
+name: my_demo_flutter_app
+description: "A new Flutter project."
+
+publish_to: 'none'
+
+
+environment:
+  sdk: ^3.12.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  cupertino_icons: ^1.0.8
+  dio: ^5.11.0
+  drift: ^2.34.3
+  sqlite3_flutter_libs: ^0.6.0+eol
+  path_provider: ^2.1.6
+  path: ^1.9.1
+  connectivity_plus: ^7.3.1
+  flutter_riverpod: ^2.6.1
+  json_annotation: ^4.12.0
+  intl: ^0.20.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+  flutter_lints: ^6.0.0
+  drift_dev: ^2.34.5
+  build_runner: ^2.15.1
+  json_serializable: ^6.14.1
+
+
+flutter:
+
+
+  uses-material-design: true
+
+  assets:
+    - assets/bottom_navbar_icons/
+    - assets/latest_arrivals_icons/
+    - assets/debt_card_icons/
+
+
