@@ -1,6 +1,6 @@
-# my_demo_flutter_app
+# Debt Note
 
-A new Flutter project.
+This is a mobile app still under development, Its main purpose is to enable SME's to be able to record their credit Sales and Track SME's they owe their Customers.
 
 ## Getting Started
 
