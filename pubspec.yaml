@@ -1,5 +1,5 @@
 name: my_demo_flutter_app
-description: "A new Flutter project."
+description: "An App for Local SME's For Tracking Debts"
 
 publish_to: 'none'
 
@@ -11,7 +11,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-
   cupertino_icons: ^1.0.8
   dio: ^5.11.0
   drift: ^2.34.3
@@ -19,9 +18,13 @@ dependencies:
   path_provider: ^2.1.6
   path: ^1.9.1
   connectivity_plus: ^7.3.1
-  flutter_riverpod: ^2.6.1
+  flutter_riverpod: ^3.4.2
   json_annotation: ^4.12.0
   intl: ^0.20.3
+  shared_preferences: ^2.5.5
+  flutter_secure_storage: ^11.0.0
+  smart_splash_kit: ^1.0.1
+  flutter_native_splash: ^2.4.8
 
 dev_dependencies:
   flutter_test:
@@ -30,9 +33,22 @@ dev_dependencies:
 
   flutter_lints: ^6.0.0
   drift_dev: ^2.34.5
-  build_runner: ^2.15.1
+  build_runner: ^2.16.0
   json_serializable: ^6.14.1
+  flutter_launcher_icons: ^0.14.4
+  rename_app: ^1.6.6
 
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/DeniBook.png"
+
+flutter_native_splash:
+  color: "#000000"
+  image: assets/icon/DeniBookSplash.png
+  android_12:
+    color: "#000000"
+    image: assets/icon/DeniBookSplash.png
 
 flutter:
 
@@ -43,5 +59,6 @@ flutter:
     - assets/bottom_navbar_icons/
     - assets/latest_arrivals_icons/
     - assets/debt_card_icons/
+    - assets/icon/
 
 
