@@ -18,7 +18,7 @@ class MyBottomNavigationBar extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: Colors.blueAccent.withValues(alpha: 0.1),
-            blurRadius: 12,
+            blurRadius: 1,
             offset: const Offset(0, -4),
           ),
         ],
@@ -49,13 +49,13 @@ class MyBottomNavigationBar extends StatelessWidget {
               label: 'Customers',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.payments_outlined, color: Colors.white70),
-              activeIcon: Icon(Icons.payments, color: Colors.amberAccent),
-              label: 'Transactions',
+              icon: Icon(Icons.library_books_outlined, color: Colors.white70),
+              activeIcon: Icon(Icons.library_books, color: Colors.amberAccent),
+              label: 'Ledgers',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.bar_chart_outlined, color: Colors.white70),
-              activeIcon: Icon(Icons.bar_chart, color: Colors.amberAccent),
+              icon: Icon(Icons.area_chart_outlined, color: Colors.white70),
+              activeIcon: Icon(Icons.area_chart, color: Colors.amberAccent),
               label: 'Reports',
             ),
           ],

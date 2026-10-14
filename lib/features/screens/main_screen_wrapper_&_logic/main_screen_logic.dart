@@ -1,7 +1,9 @@
 import '../../../features/Dashboard//presentation/widgets/latest_arrival_view_card.dart';
 import 'package:flutter/material.dart';
+import '../../../../core/widgets/custom_app_bar.dart';
+import '../../Dashboard/presentation/screens/home_dashboard_page.dart';
 import '../../../core/widgets/bottom_navigation_bar.dart';
-import '../../../features/Customers//presentation/widgets/debt_viewing_card.dart';
+import '../../Customers/presentation/widgets/user_profile_customerscreen.dart';
 
 class MainScreenLogic extends StatefulWidget {
   const MainScreenLogic({super.key});
@@ -30,15 +32,11 @@ class _MainScreenLogicState extends State<MainScreenLogic> {
   }
 
   List<Widget> get _pages => [
-    LatestArrivalCardContainer(
-      isComplete: false,
-      currentCard: _currentCard,
-      onCard: _onCardTapped,
-    ),
-    DebtViewingCard(
-      currentCard: _currentCard,
-      onCard: _onCardTapped,
-      isComplete: false,
+    HomeDashboardPage(),
+    UserProfileRow(
+      customerName: 'Dayo',
+      dayOfTransaction: '09, Oct 2026',
+      aMount: 5600,
     ),
     Center(child: Text(_pageTitles[2], style: TextStyle(fontSize: 24, color: Colors.white))),
     Center(child: Text(_pageTitles[3], style: TextStyle(fontSize: 24, color: Colors.white))),
@@ -53,9 +51,7 @@ class _MainScreenLogicState extends State<MainScreenLogic> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(_pageTitles[_selectedTab]),
-        ),
+        appBar: CustomAppBar(),
         body: _pages[_selectedTab],
         bottomNavigationBar: MyBottomNavigationBar(
           currentTab: _selectedTab,

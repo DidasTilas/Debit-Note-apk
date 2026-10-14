@@ -14,7 +14,8 @@ dependencies:
   cupertino_icons: ^1.0.8
   dio: ^5.11.0
   drift: ^2.34.3
-  sqlite3_flutter_libs: ^0.6.0+eol
+  sqlite3_flutter_libs: ^0.5.24
+  sqlite3: 3.1.2
   path_provider: ^2.1.6
   path: ^1.9.1
   connectivity_plus: ^7.3.1
@@ -25,6 +26,8 @@ dependencies:
   flutter_secure_storage: ^11.0.0
   smart_splash_kit: ^1.0.1
   flutter_native_splash: ^2.4.8
+  uuid: ^4.6.0
+  arc_progress_ring: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -49,6 +52,9 @@ flutter_native_splash:
   android_12:
     color: "#000000"
     image: assets/icon/DeniBookSplash.png
+
+dependency_overrides:
+  sqlite3: 3.1.2
 
 flutter:
 

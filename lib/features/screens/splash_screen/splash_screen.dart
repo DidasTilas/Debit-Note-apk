@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:my_demo_flutter_app/features/Customers/presentation/screens/customerscreen_empty_state.dart';
+import 'package:my_demo_flutter_app/features/screens/main_screen_wrapper_&_logic/main_screen_logic.dart';
 import '../main_screen_wrapper_&_logic/main_screen_wrapper.dart';
 import '../login_screen/login_screen.dart';
+import '../../Dashboard/presentation/screens/home_dashboard_page.dart';
 
 class DeniBookSplash extends StatefulWidget {
   const DeniBookSplash({super.key});
@@ -30,7 +33,8 @@ class _DeniBookSplashState extends State<DeniBookSplash> {
       Navigator.pushReplacement(
         context,
         //MaterialPageRoute(builder: (context) => const MainScreenWrapper()),
-        MaterialPageRoute(builder: (context) => const DeniBookLoginPage()),
+        //MaterialPageRoute(builder: (context) => const DeniBookLoginPage()),
+        MaterialPageRoute(builder: (context) => const MainScreenLogic())
       );
     }
   }
@@ -52,7 +56,7 @@ class _DeniBookSplashState extends State<DeniBookSplash> {
           ),
           //center words "Track Sales, Manage Debts. Grow Your Business"
           const SizedBox(
-              height: 55,
+              height: 65,
               width:260,
             child: Text(
               'Track Sales, Manage Debts.  Grow Your Business',
@@ -63,13 +67,14 @@ class _DeniBookSplashState extends State<DeniBookSplash> {
               textAlign: TextAlign.center,
             ),
           ),
-          const SizedBox(height: 40),
+          const SizedBox(height: 20),
           const CircularProgressIndicator(
             color: Colors.amberAccent,
+            backgroundColor: Colors.transparent,
             strokeWidth: 3,
           ),
-          Padding(
-            padding: const  EdgeInsets.only(top: 11.0),
+          SafeArea(
+            top: false,
               child: Image.asset(
                   'assets/icon/DeniBookBanner.png'
               ),
