@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_demo_flutter_app/features/ledgers/presentation/screens/ledger_screen.dart';
 import 'user_profile_homescreen.dart';
 
 class RecentTransactionDivider extends StatelessWidget {
@@ -21,7 +22,7 @@ class RecentTransactionDivider extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // 1. Fixed Header Row (Stays in place at the top of the transaction section)
+          // Header Row: Title on the left, "View all" button on the right
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -34,7 +35,12 @@ class RecentTransactionDivider extends StatelessWidget {
                 ),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const LedgersScreen()),
+                  );
+                },
                 style: TextButton.styleFrom(
                   foregroundColor: Colors.amberAccent,
                 ),
@@ -46,19 +52,19 @@ class RecentTransactionDivider extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 8),
-          // 2. Independent Scrollable Transaction List taking remaining vertical space
-          Expanded(
-            child: ListView.builder(
-              itemCount: transactions.length,
-              itemBuilder: (context, index) {
-                final tx = transactions[index];
-                return UserProfileRow(
-                  customerName: tx['name'] as String,
-                  dayOfTransaction: tx['date'] as String,
-                  aMount: tx['amount'] as int,
-                );
-              },
-            ),
+          // Transaction List
+          ListView.builder(
+            itemCount: transactions.length,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              final tx = transactions[index];
+              return UserProfileRow(
+                customerName: tx['name'] as String,
+                dayOfTransaction: tx['date'] as String,
+                aMount: tx['amount'] as int,
+              );
+            },
           ),
         ],
       ),

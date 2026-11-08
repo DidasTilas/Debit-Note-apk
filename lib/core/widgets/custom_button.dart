@@ -1,27 +1,62 @@
 import 'package:flutter/material.dart';
+import '../theme/denibook_theme.dart';
 
-class CustomButton extends StatelessWidget{
-  const CustomButton({super.key});
+class CustomButton extends StatelessWidget {
+  final String text;
+  final VoidCallback onPressed;
+  final IconData? icon;
+  final bool isOutlined;
+  final Color? backgroundColor;
+  final Color? textColor;
+
+  const CustomButton({
+    super.key,
+    required this.text,
+    required this.onPressed,
+    this.icon,
+    this.isOutlined = false,
+    this.backgroundColor,
+    this.textColor,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final bg = backgroundColor ?? (isOutlined ? Colors.transparent : DeniBookColors.yellow);
+    final fg = textColor ?? (isOutlined ? DeniBookColors.yellow : Colors.black);
+
     return SizedBox(
-      width: MediaQuery.sizeOf(context).width * 0.95,
-      child: ElevatedButton.icon(
-        //validate will return true if form is valid
-          onPressed: (){
-          },
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.amberAccent,
-            foregroundColor: Colors.black,
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12.0),
-            ),
-            elevation: 5,
+      width: double.infinity,
+      height: 52,
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: bg,
+          foregroundColor: fg,
+          elevation: isOutlined ? 0 : 2,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+            side: isOutlined
+                ? BorderSide(color: fg, width: 1.5)
+                : BorderSide.none,
           ),
-          icon: const Icon(Icons.add, size: 20),
-          label: const Text('Add Customer')
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (icon != null) ...[
+              Icon(icon, size: 20, color: fg),
+              const SizedBox(width: 8),
+            ],
+            Text(
+              text,
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: fg,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:my_demo_flutter_app/features/Customers/presentation/screens/customerscreen_empty_state.dart';
-import 'package:my_demo_flutter_app/features/screens/main_screen_wrapper_&_logic/main_screen_logic.dart';
-import '../main_screen_wrapper_&_logic/main_screen_wrapper.dart';
+import '../../../../core/theme/denibook_theme.dart';
 import '../login_screen/login_screen.dart';
-import '../../Dashboard/presentation/screens/home_dashboard_page.dart';
 
 class DeniBookSplash extends StatefulWidget {
   const DeniBookSplash({super.key});
@@ -14,7 +11,6 @@ class DeniBookSplash extends StatefulWidget {
 }
 
 class _DeniBookSplashState extends State<DeniBookSplash> {
-
   @override
   void initState() {
     super.initState();
@@ -22,19 +18,13 @@ class _DeniBookSplashState extends State<DeniBookSplash> {
   }
 
   void _initialize() async {
-    // Remove the native splash screen
     FlutterNativeSplash.remove();
+    await Future.delayed(const Duration(seconds: 3));
 
-    // Delay for a few seconds to show the Flutter splash screen content
-    await Future.delayed(const Duration(seconds: 15));
-
-    // Navigate to the main screen
     if (mounted) {
       Navigator.pushReplacement(
         context,
-        //MaterialPageRoute(builder: (context) => const MainScreenWrapper()),
-        //MaterialPageRoute(builder: (context) => const DeniBookLoginPage()),
-        MaterialPageRoute(builder: (context) => const MainScreenLogic())
+        MaterialPageRoute(builder: (context) => const DeniBookLoginPage()),
       );
     }
   }
@@ -42,46 +32,118 @@ class _DeniBookSplashState extends State<DeniBookSplash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-      body: Center(
-        child: Column(
+      backgroundColor: DeniBookColors.black,
+      body: Stack(
         children: [
-          //logo for the splash page
-          Padding(
-            padding: const EdgeInsets.only(left: 25.0,right: 25.0,top: 200.0),
-            child: Image.asset(
-                'assets/icon/DeniBookSplash.png',
-              height: 240,
+          // Main Center Content
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Logo
+                Container(
+                  padding: const EdgeInsets.all(20),
+                  decoration: const BoxDecoration(
+                    color: DeniBookColors.surfaceCard,
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Icons.account_balance_wallet,
+                    size: 80,
+                    color: DeniBookColors.yellow,
+                  ),
+                ),
+                const SizedBox(height: 24),
+                // App Title
+                RichText(
+                  text: const TextSpan(
+                    children: [
+                      TextSpan(
+                        text: 'Deni',
+                        style: TextStyle(
+                          fontSize: 36,
+                          fontWeight: FontWeight.bold,
+                          color: DeniBookColors.textWhite,
+                        ),
+                      ),
+                      TextSpan(
+                        text: 'Book',
+                        style: TextStyle(
+                          fontSize: 36,
+                          fontWeight: FontWeight.bold,
+                          color: DeniBookColors.yellow,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 12),
+                // Subtitle / Slogan
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 40.0),
+                  child: Text(
+                    'Track Sales. Manage Debts.\nGrow Your Business.',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: DeniBookColors.textMuted,
+                      height: 1.4,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                const SizedBox(height: 60),
+                // Loading Spinner
+                const CircularProgressIndicator(
+                  color: DeniBookColors.yellow,
+                  strokeWidth: 3,
+                ),
+                const SizedBox(height: 12),
+                const Text(
+                  'Loading...',
+                  style: TextStyle(
+                    color: DeniBookColors.textMuted,
+                    fontSize: 14,
+                  ),
+                ),
+              ],
             ),
           ),
-          //center words "Track Sales, Manage Debts. Grow Your Business"
-          const SizedBox(
-              height: 65,
-              width:260,
-            child: Text(
-              'Track Sales, Manage Debts.  Grow Your Business',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 25,
+          // Bottom Yellow Decorative Curve
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: ClipPath(
+              clipper: BottomWaveClipper(),
+              child: Container(
+                height: 80,
+                color: DeniBookColors.yellow,
               ),
-              textAlign: TextAlign.center,
             ),
-          ),
-          const SizedBox(height: 20),
-          const CircularProgressIndicator(
-            color: Colors.amberAccent,
-            backgroundColor: Colors.transparent,
-            strokeWidth: 3,
-          ),
-          SafeArea(
-            top: false,
-              child: Image.asset(
-                  'assets/icon/DeniBookBanner.png'
-              ),
           ),
         ],
       ),
-      ),
     );
   }
+}
+
+class BottomWaveClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    final path = Path();
+    path.moveTo(0, size.height * 0.5);
+    path.quadraticBezierTo(
+      size.width * 0.5,
+      0,
+      size.width,
+      size.height * 0.4,
+    );
+    path.lineTo(size.width, size.height);
+    path.lineTo(0, size.height);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }

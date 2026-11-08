@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 
 class UserProfileRow extends StatelessWidget {
   final String customerName;
-  final String dayOfTransaction;
+  final int phoneNumber;
+  final bool isPaid;
   final int aMount;
 
   const UserProfileRow({
     super.key,
     required this.customerName,
-    required this.dayOfTransaction,
+    required this.phoneNumber,
+    required this.isPaid,
     required this.aMount,
   });
 
@@ -54,9 +56,9 @@ class UserProfileRow extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(height: 4), // Small vertical space
-                // Detail 1: dayOfTransaction
+                // Detail 1: phoneNumber
                 Text(
-                  dayOfTransaction,
+                  '$phoneNumber',
                   style: TextStyle(fontSize: 14, color: Colors.grey[600]),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
@@ -72,7 +74,7 @@ class UserProfileRow extends StatelessWidget {
                 '$aMount',
                 style: TextStyle(
                   fontSize: 13,
-                  color: Colors.white,
+                  color: isPaid ? Colors.green : Colors.red,
                   fontStyle: FontStyle.normal,
                 ),
                 maxLines: 1,
